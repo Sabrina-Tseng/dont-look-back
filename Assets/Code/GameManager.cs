@@ -46,6 +46,13 @@ public class GameManager : MonoBehaviour
     }
     void FadeIn()
     {
-        fader.CrossFadeAlpha(0,10,true);
+        fader.CrossFadeAlpha(0,2,true);
+    }
+
+    //hp
+    public void HpDown(float hpOpacity)
+    {
+        print("hpOpacity:"+hpOpacity);
+        fader.CrossFadeAlpha(hpOpacity,0,false);
     }
 }

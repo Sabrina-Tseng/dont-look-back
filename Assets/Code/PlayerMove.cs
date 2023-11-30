@@ -6,6 +6,9 @@ public class PlayerMove : MonoBehaviour
 {    
     Rigidbody2D rb;
 
+    //game manager
+    private GameManager gameManager;
+
     //move
     public int speed = 5;
     public int jumpForce = 1000;
@@ -15,15 +18,19 @@ public class PlayerMove : MonoBehaviour
     
     public LayerMask ground;
     public Transform feet;
+    public Transform fog;
 
     //hurt
     public bool hurt = false;
+    public bool inFog = false;
+
+    //hp
+    public float hp = 100;
     
     void Start()
     {    
-    
-    rb = GetComponent<Rigidbody2D>();
-
+        gameManager = FindObjectOfType<GameManager>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -136,5 +143,44 @@ public class PlayerMove : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(new Vector2(0,jumpForceSmall));
         }
+
+        float fogDistance = Vector3.Distance (fog.transform.position, this.transform.position);
+        // print(fogDistance);
+        if (fogDistance < 1)
+        {
+            // print("hit");
+            // StartCoroutine(FogHit());
+
+            if (hp > 60)
+            {
+                hp -= 0.15f;
+            }
+            else if (hp > 30)
+            {
+                hp -= 0.1f;
+            }
+            else if (hp > 10)
+            {
+                hp -= 0.01f;
+            }
+            else
+            {
+                hp -= 0.005f;
+            }
+
+            // hp -= 0.01f;
+
+            float hpPercent = hp/100;
+            float hpOpacity = 1 - hpPercent;
+            gameManager.HpDown(hpOpacity);
+        }
+        // //test
+        // if(Input.GetButtonDown("Fire1"))
+        // {
+        //     print("hit");
+        //     StartCoroutine(FogHit());
+        // }
+
     }
+
 }
