@@ -628,12 +628,16 @@ PrefabInstance:
       value: Platform_Tall (5)
       objectReference: {fileID: 0}
     - target: {fileID: 7381244394350217030, guid: f10b56ed7b84042a08ef9f213888e4c8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.943958
+      objectReference: {fileID: 0}
+    - target: {fileID: 7381244394350217030, guid: f10b56ed7b84042a08ef9f213888e4c8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.425363
       objectReference: {fileID: 0}
     - target: {fileID: 7381244394350217030, guid: f10b56ed7b84042a08ef9f213888e4c8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.22
+      value: -2.4
       objectReference: {fileID: 0}
     - target: {fileID: 7381244394350217030, guid: f10b56ed7b84042a08ef9f213888e4c8, type: 3}
       propertyPath: m_LocalPosition.z
