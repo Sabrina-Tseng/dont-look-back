@@ -31,11 +31,11 @@ public class PlayerMove : MonoBehaviour
     {    
         gameManager = FindObjectOfType<GameManager>();
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
     {
-
         float xSpeed1 = Input.GetAxis("Horizontal1") * speed;
         float xSpeedSlow1 = Input.GetAxis("Horizontal1") * speed * 0.2f;
         float xSpeed2 = Input.GetAxis("Horizontal2") * speed;
