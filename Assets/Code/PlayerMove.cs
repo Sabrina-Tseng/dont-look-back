@@ -31,7 +31,7 @@ public class PlayerMove : MonoBehaviour
     {    
         gameManager = FindObjectOfType<GameManager>();
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        // anim = GetComponent<Animator>();
     }
 
     void Update()
