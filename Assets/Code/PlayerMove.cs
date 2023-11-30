@@ -151,36 +151,34 @@ public class PlayerMove : MonoBehaviour
             // print("hit");
             // StartCoroutine(FogHit());
 
-            if (hp > 60)
-            {
-                hp -= 0.15f;
-            }
-            else if (hp > 30)
-            {
-                hp -= 0.1f;
-            }
-            else if (hp > 10)
-            {
-                hp -= 0.01f;
-            }
-            else
-            {
-                hp -= 0.005f;
-            }
+            // if (hp > 60)
+            // {
+            //     hp -= 0.15f;
+            // }
+            // else if (hp > 30)
+            // {
+            //     hp -= 0.1f;
+            // }
+            // else if (hp > 10)
+            // {
+            //     hp -= 0.01f;
+            // }
+            // else
+            // {
+            //     hp -= 0.01f;
+            // }
 
-            // hp -= 0.01f;
+            hp -= 0.05f;
 
             float hpPercent = hp/100;
             float hpOpacity = 1 - hpPercent;
             gameManager.HpDown(hpOpacity);
         }
-        // //test
-        // if(Input.GetButtonDown("Fire1"))
-        // {
-        //     print("hit");
-        //     StartCoroutine(FogHit());
-        // }
 
+        if (hp <= 0)
+        {
+            gameManager.LoadLevel("Bad End");      
+        }
     }
 
 }
