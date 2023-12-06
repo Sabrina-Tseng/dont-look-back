@@ -15,7 +15,7 @@ public class PlayerMove : MonoBehaviour
     public int jumpForce = 1000;
     public int jumpForceSmall = 200;
     public bool grounded;
-    private int dir = 1;
+    //private int dir = 1;
     
     public LayerMask ground;
     public Transform feet;
@@ -65,6 +65,7 @@ public class PlayerMove : MonoBehaviour
             if(Input.GetAxis("Horizontal2") < 0)
             {
                 //same direction
+                //fast go left
                 rb.velocity = new Vector2(xSpeed1, rb.velocity.y);
                 xSpeed = xSpeed1;
                 anim.SetBool("Walk", true);
@@ -76,6 +77,7 @@ public class PlayerMove : MonoBehaviour
             else
             {
                 //only player one pressed
+                //slow go left
                 rb.velocity = new Vector2(xSpeedSlow1, rb.velocity.y);
                 xSpeed = xSpeedSlow1;
                 anim.SetBool("DragL", true);
@@ -85,6 +87,7 @@ public class PlayerMove : MonoBehaviour
         {
             if(Input.GetAxis("Horizontal2") > 0)
             {
+                //fast go right
                 rb.velocity = new Vector2(xSpeed1, rb.velocity.y);
                 xSpeed = xSpeed1;
                 anim.SetBool("Walk", true);
@@ -95,6 +98,7 @@ public class PlayerMove : MonoBehaviour
             }
             else
             {
+                //slow go right
                 rb.velocity = new Vector2(xSpeedSlow1, rb.velocity.y);
                 xSpeed = xSpeedSlow1;
                 anim.SetBool("DragR", true);
@@ -104,6 +108,7 @@ public class PlayerMove : MonoBehaviour
         {
             if(Input.GetAxis("Horizontal1") < 0)
             {
+                //fast go left
                 rb.velocity = new Vector2(xSpeed2, rb.velocity.y);
                 xSpeed = xSpeed2;
                 anim.SetBool("Walk", true);
@@ -114,6 +119,7 @@ public class PlayerMove : MonoBehaviour
             }
             else
             {
+                //slow go left
                 rb.velocity = new Vector2(xSpeedSlow2, rb.velocity.y);
                 xSpeed = xSpeedSlow2;
                 anim.SetBool("DragL", true);
@@ -123,6 +129,7 @@ public class PlayerMove : MonoBehaviour
         {
             if(Input.GetAxis("Horizontal1") > 0)
             {
+                //fast go right
                 rb.velocity = new Vector2(xSpeed2, rb.velocity.y);
                 xSpeed = xSpeed2;
                 anim.SetBool("Walk", true);
@@ -133,6 +140,7 @@ public class PlayerMove : MonoBehaviour
             }
             else
             {
+                //slow go right
                 rb.velocity = new Vector2(xSpeedSlow2, rb.velocity.y);
                 xSpeed = xSpeedSlow2;
                 anim.SetBool("DragR", true);
@@ -150,17 +158,20 @@ public class PlayerMove : MonoBehaviour
         grounded = Physics2D.OverlapCircle(feet.position, .5f, ground); 
         // anim.SetBool("Grounded", grounded);
 
-        if(Input.GetButtonDown("Jump1") && grounded && Input.GetButtonDown("Jump2")) 
+        if (grounded)
         {
-            rb.velocity = new Vector2(rb.velocity.x, 0);
-            rb.AddForce(new Vector2(0,jumpForce));
+            if(Input.GetButtonDown("Jump1") && Input.GetButtonDown("Jump2")) 
+            {
+                rb.velocity = new Vector2(rb.velocity.x, 0);
+                rb.AddForce(new Vector2(0,jumpForce));
+            }
+            else if (Input.GetButtonDown("Jump1") || Input.GetButtonDown("Jump2"))
+            {
+                rb.velocity = new Vector2(rb.velocity.x, 0);
+                rb.AddForce(new Vector2(0,jumpForceSmall));
+            }
         }
-        else if (Input.GetButtonDown("Jump1") || Input.GetButtonDown("Jump2"))
-        {
-            rb.velocity = new Vector2(rb.velocity.x, 0);
-            rb.AddForce(new Vector2(0,jumpForceSmall));
-        }
-
+        
         //fog kill
         //float fogDistance = Vector3.Distance (fog.transform.position, this.transform.position);
         float fogDistance = this.transform.position.x - fog.transform.position.x;
