@@ -165,31 +165,8 @@ public class PlayerMove : MonoBehaviour
         // print(fogDistance);
         if (fogDistance < 1)
         {
-            // print("hit");
-            // StartCoroutine(FogHit());
-
-            // if (hp > 60)
-            // {
-            //     hp -= 0.15f;
-            // }
-            // else if (hp > 30)
-            // {
-            //     hp -= 0.1f;
-            // }
-            // else if (hp > 10)
-            // {
-            //     hp -= 0.01f;
-            // }
-            // else
-            // {
-            //     hp -= 0.01f;
-            // }
-
-            hp -= 0.05f;
-
-            float hpPercent = hp/100;
-            float hpOpacity = 1 - hpPercent;
-            gameManager.HpDown(hpOpacity);
+            hp -= 5f * Time.deltaTime;
+            gameManager.HpDown(hp);
         }
 
         if (hp <= 0)

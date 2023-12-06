@@ -50,8 +50,10 @@ public class GameManager : MonoBehaviour
     }
 
     //hp
-    public void HpDown(float hpOpacity)
+    public void HpDown(float hp)
     {
+        float hpPercent = hp/100;
+        float hpOpacity = 1 - hpPercent;
         print("hpOpacity:"+hpOpacity);
         fader.CrossFadeAlpha(hpOpacity,0,false);
     }
