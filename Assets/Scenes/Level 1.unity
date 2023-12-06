@@ -1355,8 +1355,6 @@ MonoBehaviour:
     m_Bits: 1
   feet: {fileID: 1300097936}
   fog: {fileID: 656454415}
-  hurt: 0
-  inFog: 0
   hp: 100
 --- !u!50 &1239008147
 Rigidbody2D:
@@ -1613,7 +1611,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1387257460}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:

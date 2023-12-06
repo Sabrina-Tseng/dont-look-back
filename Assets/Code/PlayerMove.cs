@@ -22,8 +22,7 @@ public class PlayerMove : MonoBehaviour
     public Transform fog;
 
     //hurt
-    public bool hurt = false;
-    public bool inFog = false;
+    //public bool hurt = false;
 
     //hp
     public float hp = 100;
@@ -156,7 +155,7 @@ public class PlayerMove : MonoBehaviour
 
         //jump
         grounded = Physics2D.OverlapCircle(feet.position, .5f, ground); 
-        // anim.SetBool("Grounded", grounded);
+        anim.SetBool("Grounded", grounded);
 
         if (grounded)
         {
