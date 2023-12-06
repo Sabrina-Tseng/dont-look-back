@@ -161,9 +161,11 @@ public class PlayerMove : MonoBehaviour
             rb.AddForce(new Vector2(0,jumpForceSmall));
         }
 
-        float fogDistance = Vector3.Distance (fog.transform.position, this.transform.position);
-        // print(fogDistance);
-        if (fogDistance < 1)
+        //fog kill
+        //float fogDistance = Vector3.Distance (fog.transform.position, this.transform.position);
+        float fogDistance = this.transform.position.x - fog.transform.position.x;
+        //print(fogDistance);
+        if (fogDistance < 4)
         {
             hp -= 5f * Time.deltaTime;
             gameManager.HpDown(hp);
