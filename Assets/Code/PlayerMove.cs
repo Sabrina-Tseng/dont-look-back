@@ -15,6 +15,7 @@ public class PlayerMove : MonoBehaviour
     public int jumpForce = 1000;
     public int jumpForceSmall = 200;
     public bool grounded;
+    public bool struggle = false;
     //private int dir = 1;
     
     public LayerMask ground;
@@ -59,117 +60,122 @@ public class PlayerMove : MonoBehaviour
             anim.SetBool("DragL", false);
         }
 
-        if(Input.GetAxis("Horizontal1") < 0) 
+        if (!struggle)
         {
-            if(Input.GetAxis("Horizontal2") < 0)
+            if(Input.GetAxis("Horizontal1") < 0) 
             {
-                //same direction
-                //fast go left
-                rb.velocity = new Vector2(xSpeed1, rb.velocity.y);
-                xSpeed = xSpeed1;
-                anim.SetBool("Walk", true);
+                if(Input.GetAxis("Horizontal2") < 0)
+                {
+                    //same direction
+                    //fast go left
+                    rb.velocity = new Vector2(xSpeed1, rb.velocity.y);
+                    xSpeed = xSpeed1;
+                    anim.SetBool("Walk", true);
+                }
+                else if(Input.GetAxis("Horizontal2") > 0)
+                {
+                    //opposite direction
+                    StartCoroutine(Struggle());
+                }
+                else
+                {
+                    //only player one pressed
+                    //slow go left
+                    rb.velocity = new Vector2(xSpeedSlow1, rb.velocity.y);
+                    xSpeed = xSpeedSlow1;
+                    anim.SetBool("DragL", true);
+                }
             }
-            else if(Input.GetAxis("Horizontal2") > 0)
+            if(Input.GetAxis("Horizontal1") > 0) 
             {
-                //opposite direction
+                if(Input.GetAxis("Horizontal2") > 0)
+                {
+                    //fast go right
+                    rb.velocity = new Vector2(xSpeed1, rb.velocity.y);
+                    xSpeed = xSpeed1;
+                    anim.SetBool("Walk", true);
+                }
+                else if(Input.GetAxis("Horizontal2") < 0)
+                {
+                    StartCoroutine(Struggle());
+                }
+                else
+                {
+                    //slow go right
+                    rb.velocity = new Vector2(xSpeedSlow1, rb.velocity.y);
+                    xSpeed = xSpeedSlow1;
+                    anim.SetBool("DragR", true);
+                }        
             }
-            else
+            if(Input.GetAxis("Horizontal2") < 0) 
             {
-                //only player one pressed
-                //slow go left
-                rb.velocity = new Vector2(xSpeedSlow1, rb.velocity.y);
-                xSpeed = xSpeedSlow1;
-                anim.SetBool("DragL", true);
+                if(Input.GetAxis("Horizontal1") < 0)
+                {
+                    //fast go left
+                    rb.velocity = new Vector2(xSpeed2, rb.velocity.y);
+                    xSpeed = xSpeed2;
+                    anim.SetBool("Walk", true);
+                }
+                else if(Input.GetAxis("Horizontal1") > 0)
+                {
+                    StartCoroutine(Struggle());
+                }
+                else
+                {
+                    //slow go left
+                    rb.velocity = new Vector2(xSpeedSlow2, rb.velocity.y);
+                    xSpeed = xSpeedSlow2;
+                    anim.SetBool("DragL", true);
+                }
             }
-        }
-        if(Input.GetAxis("Horizontal1") > 0) 
-        {
-            if(Input.GetAxis("Horizontal2") > 0)
+            if(Input.GetAxis("Horizontal2") > 0) 
             {
-                //fast go right
-                rb.velocity = new Vector2(xSpeed1, rb.velocity.y);
-                xSpeed = xSpeed1;
-                anim.SetBool("Walk", true);
+                if(Input.GetAxis("Horizontal1") > 0)
+                {
+                    //fast go right
+                    rb.velocity = new Vector2(xSpeed2, rb.velocity.y);
+                    xSpeed = xSpeed2;
+                    anim.SetBool("Walk", true);
+                }
+                else if(Input.GetAxis("Horizontal1") < 0)
+                {
+                    StartCoroutine(Struggle());
+                }
+                else
+                {
+                    //slow go right
+                    rb.velocity = new Vector2(xSpeedSlow2, rb.velocity.y);
+                    xSpeed = xSpeedSlow2;
+                    anim.SetBool("DragR", true);
+                }        
             }
-            else if(Input.GetAxis("Horizontal2") < 0)
-            {
             
-            }
-            else
-            {
-                //slow go right
-                rb.velocity = new Vector2(xSpeedSlow1, rb.velocity.y);
-                xSpeed = xSpeedSlow1;
-                anim.SetBool("DragR", true);
-            }        
-        }
-        if(Input.GetAxis("Horizontal2") < 0) 
-        {
-            if(Input.GetAxis("Horizontal1") < 0)
-            {
-                //fast go left
-                rb.velocity = new Vector2(xSpeed2, rb.velocity.y);
-                xSpeed = xSpeed2;
-                anim.SetBool("Walk", true);
-            }
-            else if(Input.GetAxis("Horizontal1") > 0)
-            {
-            
-            }
-            else
-            {
-                //slow go left
-                rb.velocity = new Vector2(xSpeedSlow2, rb.velocity.y);
-                xSpeed = xSpeedSlow2;
-                anim.SetBool("DragL", true);
-            }
-        }
-        if(Input.GetAxis("Horizontal2") > 0) 
-        {
-            if(Input.GetAxis("Horizontal1") > 0)
-            {
-                //fast go right
-                rb.velocity = new Vector2(xSpeed2, rb.velocity.y);
-                xSpeed = xSpeed2;
-                anim.SetBool("Walk", true);
-            }
-            else if(Input.GetAxis("Horizontal1") < 0)
-            {
-            
-            }
-            else
-            {
-                //slow go right
-                rb.velocity = new Vector2(xSpeedSlow2, rb.velocity.y);
-                xSpeed = xSpeedSlow2;
-                anim.SetBool("DragR", true);
-            }        
-        }
-        
-        // //direction
-        // if ((xSpeed < 0 && transform.localScale.x > 0) || (xSpeed > 0 && transform.localScale.x < 0))
-        // {
-        //     transform.localScale *= new Vector2(-1, 1);
-        //     dir *= -1;
-        // }
+            // //direction
+            // if ((xSpeed < 0 && transform.localScale.x > 0) || (xSpeed > 0 && transform.localScale.x < 0))
+            // {
+            //     transform.localScale *= new Vector2(-1, 1);
+            //     dir *= -1;
+            // }
 
-        //jump
-        grounded = Physics2D.OverlapCircle(feet.position, .5f, ground); 
-        anim.SetBool("Grounded", grounded);
+            //jump
+            grounded = Physics2D.OverlapCircle(feet.position, .5f, ground); 
+            anim.SetBool("Grounded", grounded);
 
-        if (grounded)
-        {
-            if(Input.GetButtonDown("Jump1") && Input.GetButtonDown("Jump2")) 
+            if (grounded)
             {
-                rb.velocity = new Vector2(rb.velocity.x, 0);
-                rb.AddForce(new Vector2(0,jumpForce));
-            }
-            else if (Input.GetButtonDown("Jump1") || Input.GetButtonDown("Jump2"))
-            {
-                rb.velocity = new Vector2(rb.velocity.x, 0);
-                rb.AddForce(new Vector2(0,jumpForceSmall));
+                if(Input.GetButtonDown("Jump1") && Input.GetButtonDown("Jump2")) 
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, 0);
+                    rb.AddForce(new Vector2(0,jumpForce));
+                }
+                else if (Input.GetButtonDown("Jump1") || Input.GetButtonDown("Jump2"))
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, 0);
+                    rb.AddForce(new Vector2(0,jumpForceSmall));
+                }
             }
         }
+
         
         //fog kill
         //float fogDistance = Vector3.Distance (fog.transform.position, this.transform.position);
@@ -185,6 +191,15 @@ public class PlayerMove : MonoBehaviour
         {
             gameManager.LoadLevel("Bad End");      
         }
+    }
+        
+    IEnumerator Struggle()
+    {
+        struggle = true;
+        anim.SetBool("Struggle",struggle);
+        yield return new WaitForSeconds(1f);
+        struggle = false;
+        anim.SetBool("Struggle",struggle);
     }
 
 }
