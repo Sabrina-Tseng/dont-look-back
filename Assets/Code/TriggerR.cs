@@ -6,6 +6,7 @@ public class TriggerR : MonoBehaviour
 {
     public Transform playerPos;
     public GameObject player;
+    public GameObject wire;
 
     private float triggerDistance = 1f;
     private bool _kicking;
@@ -37,7 +38,7 @@ public class TriggerR : MonoBehaviour
 
     IEnumerator Open()
     {
-        print("dooropen");
+        //print("dooropen");
         door.transform.position = new Vector2(door.position.x, door.position.y + doorMoveDistance * Time.deltaTime);
         yield return new WaitForSeconds(1f);
         Destroy(this);
