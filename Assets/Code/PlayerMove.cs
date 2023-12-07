@@ -16,7 +16,7 @@ public class PlayerMove : MonoBehaviour
     public int jumpForceSmall = 200;
     public bool grounded;
     public bool struggle = false;
-    //private int dir = 1;
+    private int dir = 1;
     
     public LayerMask ground;
     public Transform feet;
@@ -150,12 +150,19 @@ public class PlayerMove : MonoBehaviour
                 }        
             }
             
-            // //direction
-            // if ((xSpeed < 0 && transform.localScale.x > 0) || (xSpeed > 0 && transform.localScale.x < 0))
-            // {
-            //     transform.localScale *= new Vector2(-1, 1);
-            //     dir *= -1;
-            // }
+            //direction
+            if (xSpeed < 0)
+            {
+                // transform.localScale *= new Vector2(-1, 1);
+                dir = -1;
+                anim.SetBool("Backward", true);
+            }
+            if (xSpeed > 0)
+            {
+                dir = 1;
+                anim.SetBool("Backward", false);
+            }
+
 
             //jump
             grounded = Physics2D.OverlapCircle(feet.position, .5f, ground); 
