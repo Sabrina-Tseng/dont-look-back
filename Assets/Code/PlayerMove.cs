@@ -214,17 +214,19 @@ public class PlayerMove : MonoBehaviour
 
             //kick
             //trigger
-            if (Input.GetButtonDown("Fire1"))
+            if (xSpeed == 0)
             {
-                print("fire1");
-                StartCoroutine(Kick1Trigger());
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    print("fire1");
+                    StartCoroutine(Kick1Trigger());
+                }
+                if (Input.GetButtonDown("Fire2"))
+                {
+                    print("fire2");
+                    StartCoroutine(Kick2Trigger());
+                }
             }
-            if (Input.GetButtonDown("Fire2"))
-            {
-                print("fire2");
-                StartCoroutine(Kick2Trigger());
-            }
-
 
         }
         

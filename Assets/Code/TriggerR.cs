@@ -7,7 +7,7 @@ public class TriggerR : MonoBehaviour
     public Transform playerPos;
     public GameObject player;
 
-    public float triggerDistance = 2f;
+    private float triggerDistance = 1f;
     private bool _kicking;
 
     public Transform door;
