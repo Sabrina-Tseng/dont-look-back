@@ -1190,11 +1190,13 @@ MonoBehaviour:
   speed: 2.5
   grounded: 0
   struggle: 0
-  jumpForce: 800
-  jumpForceSmall: 150
+  jumpForce: 4000
+  jumpForceSmall: 200
   jumpTriggerTime: 0.25
+  jumpCooldownTime: 0.25
   jump1: 0
   jump2: 0
+  jumping: 0
   ground:
     serializedVersion: 2
     m_Bits: 1
