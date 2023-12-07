@@ -28,6 +28,8 @@ public class PlayerMove : MonoBehaviour
     //kick
     public bool kick1 = false;
     public bool kick2 = false;
+    public bool kicking = false;
+    public float kickTriggerTime = 0.5f;
     public float kickCooldownTime = 0.5f;
     
     public LayerMask ground;
@@ -209,6 +211,37 @@ public class PlayerMove : MonoBehaviour
                     rb.AddForce(new Vector2(0,jumpForceSmall));
                 }
             }
+
+            //kick
+            //trigger
+            if (Input.GetButtonDown("Fire1"))
+            {
+                print("fire1");
+                StartCoroutine(Kick1Trigger());
+            }
+            if (Input.GetButtonDown("Fire2"))
+            {
+                print("fire2");
+                StartCoroutine(Kick2Trigger());
+            }
+
+            //kicks
+            if (!kicking)
+            {            
+                if ( kick1 && kick2 )
+                {
+                    StartCoroutine(KickBoth());
+                }
+                else if ( kick1 && !kick2 )
+                {
+                    StartCoroutine(KickR());
+                }
+                else if ( !kick1 && kick2 )
+                {
+                    StartCoroutine(KickL());
+                }
+            }
+
         }
 
         
@@ -227,7 +260,9 @@ public class PlayerMove : MonoBehaviour
             gameManager.LoadLevel("Bad End");      
         }
     }
-        
+
+    //struggle
+
     IEnumerator Struggle()
     {
         struggle = true;
@@ -237,6 +272,7 @@ public class PlayerMove : MonoBehaviour
         anim.SetBool("Struggle",struggle);
     }
 
+    //jump
     IEnumerator Jump1Trigger()
     {
         jump1 = true;
@@ -255,4 +291,43 @@ public class PlayerMove : MonoBehaviour
         yield return new WaitForSeconds(jumpCooldownTime);
         jumping = false;
     }
+
+    //kick
+    IEnumerator Kick1Trigger()
+    {
+        kick1 = true;
+        yield return new WaitForSeconds(kickTriggerTime);
+        kick1 = false;
+    }
+    IEnumerator Kick2Trigger()
+    {
+        kick2 = true;
+        yield return new WaitForSeconds(kickTriggerTime);
+        kick2 = false;
+    }
+    IEnumerator KickBoth()
+    {
+        kicking = true;
+        anim.SetBool("KickBoth",kicking);
+        yield return new WaitForSeconds(kickTriggerTime);
+        kicking = false;
+        anim.SetBool("KickBoth",kicking);
+    }
+    IEnumerator KickR()
+    {
+        kicking = true;
+        anim.SetBool("KickR",kicking);
+        yield return new WaitForSeconds(kickTriggerTime);
+        kicking = false;
+        anim.SetBool("KickR",kicking);
+    }
+    IEnumerator KickL()
+    {
+        kicking = true;
+        anim.SetBool("KickL",kicking);
+        yield return new WaitForSeconds(kickTriggerTime);
+        kicking = false;
+        anim.SetBool("KickL",kicking);
+    }
+    
 }
