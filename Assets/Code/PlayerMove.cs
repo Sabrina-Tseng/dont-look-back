@@ -12,11 +12,16 @@ public class PlayerMove : MonoBehaviour
 
     //move
     public float speed = 2.5f;
-    public int jumpForce = 1000;
-    public int jumpForceSmall = 200;
     public bool grounded;
     public bool struggle = false;
     private int dir = 1;
+
+    //jump
+    public int jumpForce = 800;
+    public int jumpForceSmall = 150;
+    public float jumpTriggerTime = 0.25f;
+    public bool jump1 = false;
+    public bool jump2 = false;
     
     public LayerMask ground;
     public Transform feet;
@@ -60,6 +65,8 @@ public class PlayerMove : MonoBehaviour
             anim.SetBool("DragL", false);
         }
 
+
+        //walk if not struggling
         if (!struggle)
         {
             if(Input.GetAxis("Horizontal1") < 0) 
@@ -165,17 +172,30 @@ public class PlayerMove : MonoBehaviour
 
 
             //jump
-            grounded = Physics2D.OverlapCircle(feet.position, .5f, ground); 
+            grounded = Physics2D.OverlapCircle(feet.position, .25f, ground); 
             anim.SetBool("Grounded", grounded);
 
+            //jump if grounded
             if (grounded)
             {
-                if(Input.GetButtonDown("Jump1") && Input.GetButtonDown("Jump2")) 
+                //trigger
+                if (Input.GetButtonDown("Jump1"))
+                {
+                    StartCoroutine(Jump1Trigger());
+                }
+                if (Input.GetButtonDown("Jump2"))
+                {
+                    StartCoroutine(Jump2Trigger());
+                }
+
+                //big jump
+                if( jump1 && jump2 ) 
                 {
                     rb.velocity = new Vector2(rb.velocity.x, 0);
                     rb.AddForce(new Vector2(0,jumpForce));
                 }
-                else if (Input.GetButtonDown("Jump1") || Input.GetButtonDown("Jump2"))
+                //small jump
+                else if ( jump1 || jump2 )
                 {
                     rb.velocity = new Vector2(rb.velocity.x, 0);
                     rb.AddForce(new Vector2(0,jumpForceSmall));
@@ -209,4 +229,16 @@ public class PlayerMove : MonoBehaviour
         anim.SetBool("Struggle",struggle);
     }
 
+    IEnumerator Jump1Trigger()
+    {
+        jump1 = true;
+        yield return new WaitForSeconds(jumpTriggerTime);
+        jump1 = false;
+    }
+    IEnumerator Jump2Trigger()
+    {
+        jump2 = true;
+        yield return new WaitForSeconds(jumpTriggerTime);
+        jump2 = false;
+    }
 }

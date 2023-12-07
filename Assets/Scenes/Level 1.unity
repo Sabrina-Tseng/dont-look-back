@@ -1188,10 +1188,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2.5
-  jumpForce: 5000
-  jumpForceSmall: 1000
   grounded: 0
   struggle: 0
+  jumpForce: 800
+  jumpForceSmall: 150
+  jumpTriggerTime: 0.25
+  jump1: 0
+  jump2: 0
   ground:
     serializedVersion: 2
     m_Bits: 1
