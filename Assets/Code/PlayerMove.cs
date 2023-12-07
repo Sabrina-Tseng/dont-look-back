@@ -29,7 +29,7 @@ public class PlayerMove : MonoBehaviour
     public bool kick1 = false;
     public bool kick2 = false;
     public bool kicking = false;
-    public float kickTriggerTime = 0.5f;
+    public float kickTriggerTime = 0.25f;
     public float kickCooldownTime = 0.5f;
     
     public LayerMask ground;
@@ -243,7 +243,6 @@ public class PlayerMove : MonoBehaviour
             }
 
         }
-
         
         //fog kill
         //float fogDistance = Vector3.Distance (fog.transform.position, this.transform.position);
@@ -309,7 +308,7 @@ public class PlayerMove : MonoBehaviour
     {
         kicking = true;
         anim.SetBool("KickBoth",kicking);
-        yield return new WaitForSeconds(kickTriggerTime);
+        yield return new WaitForSeconds(kickCooldownTime);
         kicking = false;
         anim.SetBool("KickBoth",kicking);
     }
@@ -317,7 +316,7 @@ public class PlayerMove : MonoBehaviour
     {
         kicking = true;
         anim.SetBool("KickR",kicking);
-        yield return new WaitForSeconds(kickTriggerTime);
+        yield return new WaitForSeconds(kickCooldownTime);
         kicking = false;
         anim.SetBool("KickR",kicking);
     }
@@ -325,7 +324,7 @@ public class PlayerMove : MonoBehaviour
     {
         kicking = true;
         anim.SetBool("KickL",kicking);
-        yield return new WaitForSeconds(kickTriggerTime);
+        yield return new WaitForSeconds(kickCooldownTime);
         kicking = false;
         anim.SetBool("KickL",kicking);
     }
