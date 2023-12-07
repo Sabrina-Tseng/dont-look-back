@@ -24,6 +24,11 @@ public class PlayerMove : MonoBehaviour
     public bool jump1 = false;
     public bool jump2 = false;
     public bool jumping = false;
+
+    //kick
+    public bool kick1 = false;
+    public bool kick2 = false;
+    public float kickCooldownTime = 0.5f;
     
     public LayerMask ground;
     public Transform feet;
