@@ -772,7 +772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3785c734c25d645b7ba8daba81f5e905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
+  speed: 0.5
 --- !u!1001 &526765093
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -904,6 +904,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a24bcbd29d9894c3fab395bd390f2553, type: 3}
+--- !u!4 &620033787 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7769073923862003427, guid: 5c7f45223861445d48ad183fd262d29d, type: 3}
+  m_PrefabInstance: {fileID: 1057760394}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &656454415 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 768386927824944854, guid: 9117a1c7dab734278baf917264bf7e5a, type: 3}
@@ -1254,6 +1259,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1045692092 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4317809505234298808, guid: c1b737f275f0044b5aecf66657d3b9ff, type: 3}
+  m_PrefabInstance: {fileID: 1058230990657782957}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1045692094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045692092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05c43480e5970408c9a0ec67a5165161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPos: {fileID: 1239008149}
+  player: {fileID: 1239008144}
+  doorOpened: 0
+  triggerDistance: 2
+  door: {fileID: 620033787}
+  doorMoveDistance: 10
 --- !u!1001 &1057760394
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1996,6 +2024,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &1438323368 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7769073923862003427, guid: 5c7f45223861445d48ad183fd262d29d, type: 3}
+  m_PrefabInstance: {fileID: 5693517084005107931}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1475933694
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2621,7 +2654,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4317809505234298808, guid: c1b737f275f0044b5aecf66657d3b9ff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1045692094}
   m_SourcePrefab: {fileID: 100100000, guid: c1b737f275f0044b5aecf66657d3b9ff, type: 3}
 --- !u!1001 &2780628207173030802
 PrefabInstance:
@@ -2760,6 +2796,8 @@ MonoBehaviour:
   playerPos: {fileID: 1239008149}
   player: {fileID: 1239008144}
   triggerDistance: 5
+  door: {fileID: 1438323368}
+  doorMoveDistance: 10
 --- !u!1001 &5152177258987481328
 PrefabInstance:
   m_ObjectHideFlags: 0

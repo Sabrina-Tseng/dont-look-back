@@ -225,22 +225,6 @@ public class PlayerMove : MonoBehaviour
                 StartCoroutine(Kick2Trigger());
             }
 
-            //kicks
-            if (!kicking)
-            {            
-                if ( kick1 && kick2 )
-                {
-                    StartCoroutine(KickBoth());
-                }
-                else if ( kick1 && !kick2 )
-                {
-                    StartCoroutine(KickR());
-                }
-                else if ( !kick1 && kick2 )
-                {
-                    StartCoroutine(KickL());
-                }
-            }
 
         }
         
@@ -295,38 +279,19 @@ public class PlayerMove : MonoBehaviour
     IEnumerator Kick1Trigger()
     {
         kick1 = true;
+        anim.SetBool("KickR",kick1);
         yield return new WaitForSeconds(kickTriggerTime);
         kick1 = false;
+        anim.SetBool("KickR",kick1);
     }
     IEnumerator Kick2Trigger()
     {
         kick2 = true;
+        anim.SetBool("KickL",kick2);
         yield return new WaitForSeconds(kickTriggerTime);
         kick2 = false;
+        anim.SetBool("KickL",kick2);
     }
-    IEnumerator KickBoth()
-    {
-        kicking = true;
-        anim.SetBool("KickBoth",kicking);
-        yield return new WaitForSeconds(kickCooldownTime);
-        kicking = false;
-        anim.SetBool("KickBoth",kicking);
-    }
-    IEnumerator KickR()
-    {
-        kicking = true;
-        anim.SetBool("KickR",kicking);
-        yield return new WaitForSeconds(kickCooldownTime);
-        kicking = false;
-        anim.SetBool("KickR",kicking);
-    }
-    IEnumerator KickL()
-    {
-        kicking = true;
-        anim.SetBool("KickL",kicking);
-        yield return new WaitForSeconds(kickCooldownTime);
-        kicking = false;
-        anim.SetBool("KickL",kicking);
-    }
+
     
 }
