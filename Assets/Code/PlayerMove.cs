@@ -28,9 +28,9 @@ public class PlayerMove : MonoBehaviour
     //kick
     public bool kick1 = false;
     public bool kick2 = false;
-    public bool kicking = false;
+    //public bool kicking = false;
     public float kickTriggerTime = 0.25f;
-    public float kickCooldownTime = 0.5f;
+    //public float kickCooldownTime = 0.5f;
     
     public LayerMask ground;
     public Transform feet;
@@ -247,7 +247,6 @@ public class PlayerMove : MonoBehaviour
     }
 
     //struggle
-
     IEnumerator Struggle()
     {
         struggle = true;
