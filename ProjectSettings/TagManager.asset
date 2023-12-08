@@ -51,6 +51,9 @@ TagManager:
   - name: Player
     uniqueID: 830917595
     locked: 0
+  - name: Door
+    uniqueID: 384678065
+    locked: 0
   - name: Fog
     uniqueID: 1678096699
     locked: 0
