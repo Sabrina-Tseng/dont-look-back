@@ -42,6 +42,9 @@ TagManager:
   - name: Background
     uniqueID: 1867644881
     locked: 0
+  - name: Wire
+    uniqueID: 2687705889
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

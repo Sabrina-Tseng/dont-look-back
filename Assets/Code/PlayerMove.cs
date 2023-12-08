@@ -14,7 +14,7 @@ public class PlayerMove : MonoBehaviour
     public float speed = 2.5f;
     public bool grounded;
     public bool struggle = false;
-    private int dir = 1;
+    //private int dir = 1;
 
     //jump
     public int jumpForce = 800;
@@ -170,12 +170,12 @@ public class PlayerMove : MonoBehaviour
             if (xSpeed < 0)
             {
                 // transform.localScale *= new Vector2(-1, 1);
-                dir = -1;
+                //dir = -1;
                 anim.SetBool("Backward", true);
             }
             if (xSpeed > 0)
             {
-                dir = 1;
+                //dir = 1;
                 anim.SetBool("Backward", false);
             }
 
