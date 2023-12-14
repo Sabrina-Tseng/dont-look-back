@@ -36,9 +36,6 @@ public class PlayerMove : MonoBehaviour
     public Transform feet;
     public Transform fog;
 
-    //hurt
-    //public bool hurt = false;
-
     //hp
     public float hp = 100;
     
