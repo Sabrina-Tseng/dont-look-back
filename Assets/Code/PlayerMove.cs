@@ -31,7 +31,12 @@ public class PlayerMove : MonoBehaviour
     //public bool kicking = false;
     public float kickTriggerTime = 0.25f;
     //public float kickCooldownTime = 0.5f;
+
+    //audio
+    public AudioClip struggleSound;
+    AudioSource _audioSource;
     
+    //position
     public LayerMask ground;
     public Transform feet;
     public Transform fog;
@@ -44,6 +49,7 @@ public class PlayerMove : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -248,6 +254,7 @@ public class PlayerMove : MonoBehaviour
     {
         struggle = true;
         anim.SetBool("Struggle",struggle);
+        _audioSource.PlayOneShot(struggleSound);
         yield return new WaitForSeconds(1f);
         struggle = false;
         anim.SetBool("Struggle",struggle);
