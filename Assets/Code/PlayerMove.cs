@@ -304,5 +304,14 @@ public class PlayerMove : MonoBehaviour
         anim.SetBool("KickL",kick2);
     }
 
+
+    //good ending
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Cat"))
+        {
+            gameManager.LoadLevel("Good Ending");
+        }
+    }
     
 }

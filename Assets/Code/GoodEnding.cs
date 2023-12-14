@@ -23,7 +23,7 @@ public class GoodEnding : MonoBehaviour
 
     IEnumerator EndingFade()
     {
-        yield return new WaitForSeconds(12);
+        yield return new WaitForSeconds(10);
         fader.CrossFadeAlpha(1,5,true);
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene("Start Screen");
