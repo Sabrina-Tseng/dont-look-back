@@ -20,8 +20,13 @@ public class Trigger : MonoBehaviour
     public Transform door;
     public float doorMoveDistance = 10f;
 
+    //audio
+    AudioSource _audioSource;
+    public AudioClip triggerSound;
+
     void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -62,6 +67,7 @@ public class Trigger : MonoBehaviour
     {
         //print("dooropen");
         door.transform.position = new Vector2(door.position.x, door.position.y + doorMoveDistance * Time.deltaTime);
+        _audioSource.PlayOneShot(triggerSound);
         yield return new WaitForSeconds(1f);
         
         if (hasWire)

@@ -33,8 +33,8 @@ public class PlayerMove : MonoBehaviour
     //public float kickCooldownTime = 0.5f;
 
     //audio
-    public AudioClip struggleSound;
     AudioSource _audioSource;
+    public AudioClip struggleSound;
     
     //position
     public LayerMask ground;
