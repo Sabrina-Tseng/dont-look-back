@@ -248,6 +248,11 @@ public class PlayerMove : MonoBehaviour
             hp -= 20f * Time.deltaTime;
             gameManager.HpDown(hp);
         }
+        if (this.transform.position.y < -10)
+        {
+            hp -= 20f * Time.deltaTime;
+            gameManager.HpDown(hp);
+        }
         if (hp <= 0)
         {
             gameManager.LoadLevel("Bad End");
