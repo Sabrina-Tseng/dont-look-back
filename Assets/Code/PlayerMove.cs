@@ -43,13 +43,14 @@ public class PlayerMove : MonoBehaviour
 
     //hp
     public float hp = 100;
-    
+
     void Start()
     {    
         gameManager = FindObjectOfType<GameManager>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
+        hp = 100;
     }
 
     void Update()
@@ -242,10 +243,15 @@ public class PlayerMove : MonoBehaviour
             hp -= 5f * Time.deltaTime;
             gameManager.HpDown(hp);
         }
-
+        if (fogDistance < -1)
+        {
+            hp -= 20f * Time.deltaTime;
+            gameManager.HpDown(hp);
+        }
         if (hp <= 0)
         {
-            gameManager.LoadLevel("Bad End");      
+            gameManager.LoadLevel("Bad End");
+            hp = 1;      
         }
     }
 
