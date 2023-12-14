@@ -250,8 +250,8 @@ public class PlayerMove : MonoBehaviour
         }
         if (hp <= 0)
         {
-            hp = 100;
-            gameManager.LoadLevel("Bad End");      
+            gameManager.LoadLevel("Bad End");
+            hp = 1;      
         }
     }
 
