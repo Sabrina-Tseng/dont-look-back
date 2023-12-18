@@ -248,10 +248,15 @@ public class PlayerMove : MonoBehaviour
             hp -= 20f * Time.deltaTime;
             gameManager.HpDown(hp);
         }
+        if (this.transform.position.y < -10)
+        {
+            hp -= 20f * Time.deltaTime;
+            gameManager.HpDown(hp);
+        }
         if (hp <= 0)
         {
-            hp = 100;
-            gameManager.LoadLevel("Bad End");      
+            gameManager.LoadLevel("Bad End");
+            hp = 1;      
         }
     }
 
@@ -304,5 +309,14 @@ public class PlayerMove : MonoBehaviour
         anim.SetBool("KickL",kick2);
     }
 
+
+    //good ending
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Cat"))
+        {
+            gameManager.LoadLevel("Good Ending");
+        }
+    }
     
 }
